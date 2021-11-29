@@ -1,12 +1,14 @@
 buildscript {
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
     }
 
     dependencies {
         classpath(Config.ClassPaths.androidGradle)
         classpath(Config.ClassPaths.kotlinGradle)
+        classpath(Config.ClassPaths.daggerHiltGradle)
+        classpath(Config.ClassPaths.navigationSafArgsGradle)
     }
 }
 
