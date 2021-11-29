@@ -30,8 +30,8 @@ object AppModule {
     ): RequestManager = Glide.with(context)
         .setDefaultRequestOptions(
             RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.color.gray_800)
+                .error(R.color.red_800)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
         )
 }

@@ -1,4 +1,4 @@
-package com.mkdev.zerotohero.extension
+package com.mkdev.foursquarecodechallenge.extension
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
