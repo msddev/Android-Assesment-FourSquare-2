@@ -1,14 +1,17 @@
 package com.mkdev.domain.repository
 
-import com.mkdev.domain.entity.VenueDetailEntity
-import com.mkdev.domain.entity.VenueEntity
-import com.mkdev.domain.entity.VenueParams
+import com.mkdev.domain.model.VenueDetail
+import com.mkdev.domain.model.Venue
+import com.mkdev.domain.model.VenueParams
 import kotlinx.coroutines.flow.Flow
 
 
 interface VenueRepository {
 
-    fun getNearVenues(param: VenueParams): Flow<List<VenueEntity>>
+    // Remote and cache
+    fun getNearVenues(param: VenueParams): Flow<List<Venue>>
+    fun getVenueById(id: String): Flow<VenueDetail>
 
-    fun getVenueById(id: String): Flow<VenueDetailEntity>
+    // Cache
+    suspend fun saveNearVenues(listNearVenues: List<Venue>)
 }

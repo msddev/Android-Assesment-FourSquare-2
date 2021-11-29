@@ -1,4 +1,4 @@
-package com.mkdev.domain.entity
+package com.mkdev.data.entity
 
 data class VenueDetailEntity(
     val id: String,

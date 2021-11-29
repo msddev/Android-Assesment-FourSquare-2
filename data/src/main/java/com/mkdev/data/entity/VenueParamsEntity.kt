@@ -1,6 +1,6 @@
-package com.mkdev.domain.entity
+package com.mkdev.data.entity
 
-data class VenueParams(
+data class VenueParamsEntity(
     val latLng: String,
     val limit: Int,
     val offset: Int
