@@ -10,7 +10,7 @@ interface VenueRepository {
 
     // Remote and cache
     fun getNearVenues(param: VenueParams): Flow<List<Venue>>
-    fun getVenueById(id: String): Flow<VenueDetail>
+    fun getVenueDetailById(id: String): Flow<VenueDetail>
 
     // Cache
     suspend fun saveNearVenues(listNearVenues: List<Venue>)

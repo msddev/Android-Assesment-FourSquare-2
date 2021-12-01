@@ -6,5 +6,5 @@ import com.mkdev.data.models.VenueParamsEntity
 
 interface VenueRemote {
     suspend fun getNearVenues(params: VenueParamsEntity): List<VenueEntity>
-    suspend fun getVenueById(id: String): VenueDetailEntity
+    suspend fun getVenueDetailById(id: String): VenueDetailEntity
 }

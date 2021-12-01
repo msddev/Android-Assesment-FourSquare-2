@@ -13,8 +13,8 @@ class VenueCacheDataSource @Inject constructor(
     override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
         cache.getVenues(params.latLng)
 
-    override suspend fun getVenueById(id: String): VenueDetailEntity =
-        cache.getVenueById(id)
+    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
+        cache.getVenueDetailById(id)
 
     override suspend fun saveVenues(listVenues: List<VenueEntity>) =
         cache.saveVenues(listVenues)

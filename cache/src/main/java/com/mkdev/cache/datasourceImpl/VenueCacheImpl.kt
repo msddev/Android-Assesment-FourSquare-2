@@ -18,7 +18,7 @@ class VenueCacheImpl @Inject constructor(
             venueCacheMapper.mapFromCached(cacheVenue)
         }
 
-    override suspend fun getVenueById(id: String): VenueDetailEntity =
+    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
         venueDetailCacheMapper.mapFromCached(venueDao.getVenueById(id))
 
     override suspend fun saveVenues(listVenues: List<VenueEntity>) {

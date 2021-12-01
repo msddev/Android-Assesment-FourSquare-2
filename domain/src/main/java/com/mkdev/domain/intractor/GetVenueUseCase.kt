@@ -9,5 +9,5 @@ class GetVenueByIdUseCase @Inject constructor(
     private val repository: VenueRepository
 ) : BaseUseCase<String, Flow<VenueDetail>> {
     override suspend fun invoke(params: String): Flow<VenueDetail> =
-        repository.getVenueById(params)
+        repository.getVenueDetailById(params)
 }

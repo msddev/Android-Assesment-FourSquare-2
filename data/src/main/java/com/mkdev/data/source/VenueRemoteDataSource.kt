@@ -13,8 +13,8 @@ class VenueRemoteDataSource @Inject constructor(
     override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
         remote.getNearVenues(params)
 
-    override suspend fun getVenueById(id: String): VenueDetailEntity =
-        remote.getVenueById(id)
+    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
+        remote.getVenueDetailById(id)
 
     override suspend fun saveVenues(listVenues: List<VenueEntity>) {
         throw UnsupportedOperationException("Save operation is not supported for RemoteDataSource.")

@@ -17,7 +17,7 @@ class VenueRemoteImpl @Inject constructor(
         service.getNearVenues(params.latLng, params.limit, params.offset)
             .response.groups[0].items.map { nearVenueEntityMapper.mapFromResponse(it) }
 
-    override suspend fun getVenueById(id: String): VenueDetailEntity =
+    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
         VenueEntityMapper().mapFromResponse(service.getVenueById(id).response.venue)
 
 

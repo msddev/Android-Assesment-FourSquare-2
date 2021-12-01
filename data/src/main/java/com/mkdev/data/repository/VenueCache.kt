@@ -5,7 +5,7 @@ import com.mkdev.data.models.VenueEntity
 
 interface VenueCache {
     suspend fun getVenues(latLng: String): List<VenueEntity>
-    suspend fun getVenueById(id: String): VenueDetailEntity
+    suspend fun getVenueDetailById(id: String): VenueDetailEntity
 
     suspend fun saveVenues(listVenues: List<VenueEntity>)
     suspend fun deleteAllVenues()

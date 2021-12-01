@@ -7,7 +7,7 @@ import com.mkdev.data.models.VenueParamsEntity
 interface VenueDataSource {
     // Remote and cache
     suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity>
-    suspend fun getVenueById(id: String): VenueDetailEntity
+    suspend fun getVenueDetailById(id: String): VenueDetailEntity
 
     // Cache
     suspend fun saveVenues(listVenues: List<VenueEntity>)
