@@ -1,8 +1,8 @@
 package com.mkdev.data.repository
 
-import com.mkdev.data.entity.VenueDetailEntity
-import com.mkdev.data.entity.VenueEntity
-import com.mkdev.data.entity.VenueParamsEntity
+import com.mkdev.data.models.VenueDetailEntity
+import com.mkdev.data.models.VenueEntity
+import com.mkdev.data.models.VenueParamsEntity
 
 interface VenueDataSource {
     // Remote and cache
@@ -11,6 +11,7 @@ interface VenueDataSource {
 
     // Cache
     suspend fun saveVenues(listVenues: List<VenueEntity>)
-    suspend fun saveVenueDetail(detail: VenueDetailEntity)
+    suspend fun deleteAllVenues()
+    suspend fun getLatestLocations(): List<String>
     suspend fun isCached(): Boolean
 }

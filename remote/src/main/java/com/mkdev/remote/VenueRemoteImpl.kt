@@ -1,8 +1,8 @@
 package com.mkdev.remote
 
-import com.mkdev.data.entity.VenueDetailEntity
-import com.mkdev.data.entity.VenueEntity
-import com.mkdev.data.entity.VenueParamsEntity
+import com.mkdev.data.models.VenueDetailEntity
+import com.mkdev.data.models.VenueEntity
+import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueRemote
 import com.mkdev.remote.api.FourSquareService
 import com.mkdev.remote.mappers.NearVenueEntityMapper

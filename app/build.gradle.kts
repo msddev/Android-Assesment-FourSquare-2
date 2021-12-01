@@ -1,4 +1,5 @@
 import dependencies.UiDep
+import dependencies.RemoteDep
 
 plugins {
     id(Config.Plugins.android)

@@ -1,4 +1,4 @@
-package com.mkdev.data.entity
+package com.mkdev.data.models
 
 data class VenueParamsEntity(
     val latLng: String,

@@ -1,13 +1,13 @@
-package com.mkdev.data.entity
+package com.mkdev.data.models
 
-data class VenueDetailEntity(
+data class VenueEntity(
     val id: String,
     val name: String,
     val latitude: Double,
     val longitude: Double,
     val address: String ?= "",
+    val distance: Int,
     val categoryType: String,
     val categoryIcon: String,
-    val picture: String ,
-    val likes: Int
+    val picture: String
 )

@@ -1,5 +1,6 @@
 package com.mkdev.remote.api
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,25 +11,29 @@ object ServiceFactory {
 
     private const val baseUrl = "https://api.foursquare.com/"
 
-    fun create(isDebug: Boolean, fourSquareInterceptor: RequestInterceptor): FourSquareService {
-        val retrofit = createRetrofit(isDebug, fourSquareInterceptor)
+    fun create(isDebug: Boolean): FourSquareService {
+        val retrofit = createRetrofit(isDebug)
         return retrofit.create(FourSquareService::class.java)
     }
 
     private fun createRetrofit(
-        isDebug: Boolean,
-        fourSquareInterceptor: RequestInterceptor
+        isDebug: Boolean
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(createOkHttpClient(createLoggingInterceptor(isDebug), fourSquareInterceptor))
+            .client(
+                createOkHttpClient(
+                    createLoggingInterceptor(isDebug),
+                    createFourSquareInterceptor()
+                )
+            )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     private fun createOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        fourSquareInterceptor: RequestInterceptor
+        fourSquareInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(fourSquareInterceptor)
@@ -37,6 +42,8 @@ object ServiceFactory {
             .readTimeout(OK_HTTP_TIMEOUT, TimeUnit.SECONDS)
             .build()
     }
+
+    private fun createFourSquareInterceptor(): Interceptor = RequestInterceptor()
 
     private fun createLoggingInterceptor(isDebug: Boolean): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {

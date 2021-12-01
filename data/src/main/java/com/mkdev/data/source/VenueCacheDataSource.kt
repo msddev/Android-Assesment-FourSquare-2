@@ -1,8 +1,8 @@
 package com.mkdev.data.source
 
-import com.mkdev.data.entity.VenueDetailEntity
-import com.mkdev.data.entity.VenueEntity
-import com.mkdev.data.entity.VenueParamsEntity
+import com.mkdev.data.models.VenueDetailEntity
+import com.mkdev.data.models.VenueEntity
+import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueCache
 import com.mkdev.data.repository.VenueDataSource
 import javax.inject.Inject
@@ -19,8 +19,11 @@ class VenueCacheDataSource @Inject constructor(
     override suspend fun saveVenues(listVenues: List<VenueEntity>) =
         cache.saveVenues(listVenues)
 
-    override suspend fun saveVenueDetail(detail: VenueDetailEntity) =
-        cache.saveVenueDetail(detail)
+    override suspend fun deleteAllVenues() =
+        cache.deleteAllVenues()
+
+    override suspend fun getLatestLocations(): List<String> =
+        cache.getLatestLocations()
 
     override suspend fun isCached(): Boolean =
         cache.isCached()

@@ -1,8 +1,8 @@
 package com.mkdev.data.source
 
-import com.mkdev.data.entity.VenueDetailEntity
-import com.mkdev.data.entity.VenueEntity
-import com.mkdev.data.entity.VenueParamsEntity
+import com.mkdev.data.models.VenueDetailEntity
+import com.mkdev.data.models.VenueEntity
+import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueDataSource
 import com.mkdev.data.repository.VenueRemote
 import javax.inject.Inject
@@ -20,8 +20,12 @@ class VenueRemoteDataSource @Inject constructor(
         throw UnsupportedOperationException("Save operation is not supported for RemoteDataSource.")
     }
 
-    override suspend fun saveVenueDetail(detail: VenueDetailEntity) {
-        throw UnsupportedOperationException("Save operation is not supported for RemoteDataSource.")
+    override suspend fun deleteAllVenues() {
+        throw UnsupportedOperationException("Delete operation is not supported for RemoteDataSource.")
+    }
+
+    override suspend fun getLatestLocations(): List<String> {
+        throw UnsupportedOperationException("Get location operation is not supported for RemoteDataSource.")
     }
 
     override suspend fun isCached(): Boolean {

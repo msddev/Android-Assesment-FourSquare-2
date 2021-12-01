@@ -1,6 +1,6 @@
 package com.mkdev.remote.mappers
 
-import com.mkdev.data.entity.VenueEntity
+import com.mkdev.data.models.VenueEntity
 import com.mkdev.remote.models.explore.Item
 import javax.inject.Inject
 

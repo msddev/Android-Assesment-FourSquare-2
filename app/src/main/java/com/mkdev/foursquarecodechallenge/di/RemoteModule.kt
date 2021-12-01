@@ -2,7 +2,6 @@ package com.mkdev.foursquarecodechallenge.di
 
 import com.mkdev.foursquarecodechallenge.BuildConfig
 import com.mkdev.remote.api.FourSquareService
-import com.mkdev.remote.api.RequestInterceptor
 import com.mkdev.remote.api.ServiceFactory
 import dagger.Module
 import dagger.Provides
@@ -17,9 +16,5 @@ object RemoteModule {
     @Singleton
     @Provides
     fun provideFourSquareService(): FourSquareService =
-        ServiceFactory.create(BuildConfig.DEBUG, provideFourSquareInterceptor())
-
-    @Singleton
-    @Provides
-    fun provideFourSquareInterceptor(): RequestInterceptor = RequestInterceptor()
+        ServiceFactory.create(BuildConfig.DEBUG)
 }
