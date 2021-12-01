@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import javax.inject.Inject
 
 @HiltViewModel
-class LocationListViewModel @Inject constructor(
+class VenueDetailViewModel @Inject constructor(
     contextProvider: CoroutineContextProvider
 ) : BaseViewModel(contextProvider) {
 

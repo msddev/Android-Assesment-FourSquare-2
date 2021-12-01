@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FourSquare</string>
+    <string name="venue_list_label_last_known_location">"Last known location: "</string>
+
 </resources>
