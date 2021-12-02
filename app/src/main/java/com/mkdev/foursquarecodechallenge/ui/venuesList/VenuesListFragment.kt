@@ -31,7 +31,13 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getVenues(VenueParams(latLng = "35.730673, 51.458880", limit = limit, offset = offset))
+        viewModel.getVenues(
+            VenueParams(
+                latLng = "35.730673, 51.458880",
+                limit = limit,
+                offset = offset
+            )
+        )
         observe(viewModel.venuesList, ::onViewStateChange)
         setupRecyclerView()
     }
@@ -45,7 +51,8 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
         venuesAdapter.setItemClickListener { venue ->
             findNavController().navigate(
                 VenuesListFragmentDirections.actionVenuesListFragmentToVenueDetailFragment(
-                    venue.id
+                    venueId = venue.id,
+                    venueDistance = venue.distance.toString()
                 )
             )
         }

@@ -6,8 +6,8 @@ import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueRemote
 import com.mkdev.remote.api.FourSquareService
 import com.mkdev.remote.mappers.NearVenueEntityMapper
-import com.mkdev.remote.mappers.VenueEntityMapper
-import com.mkdev.remote.models.detail.Venue
+import com.mkdev.remote.mappers.VenueDetailEntityMapper
+import com.mkdev.remote.models.detail.VenueDetail
 import javax.inject.Inject
 
 class VenueRemoteImpl @Inject constructor(
@@ -26,7 +26,7 @@ class VenueRemoteImpl @Inject constructor(
         }
 
     override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
-        VenueEntityMapper().mapFromResponse(service.getVenueById(id).data?.venue ?: Venue())
+        VenueDetailEntityMapper().mapFromResponse(service.getVenueById(id).data?.venueDetail ?: VenueDetail())
 
 
 }

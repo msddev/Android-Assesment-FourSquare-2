@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface VenueRepository {
-
     // Remote and cache
     fun getNearVenues(param: VenueParams): Flow<List<Venue>>
     fun getVenueDetailById(id: String): Flow<VenueDetail>

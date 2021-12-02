@@ -15,7 +15,8 @@ class VenueDetailMapper @Inject constructor() : Mapper<VenueDetailEntity, VenueD
             categoryType = type.categoryType,
             categoryIcon = type.categoryIcon,
             picture = type.picture,
-            likes = type.likes
+            likes = type.likes,
+            phone = type.phone
         )
 
     override fun mapToEntity(type: VenueDetail): VenueDetailEntity =
@@ -28,6 +29,7 @@ class VenueDetailMapper @Inject constructor() : Mapper<VenueDetailEntity, VenueD
             categoryType = type.categoryType,
             categoryIcon = type.categoryIcon,
             picture = type.picture,
-            likes = type.likes
+            likes = type.likes,
+            phone = type.phone
         )
 }

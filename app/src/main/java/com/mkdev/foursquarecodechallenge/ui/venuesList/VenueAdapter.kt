@@ -11,6 +11,7 @@ import com.mkdev.domain.model.Venue
 import com.mkdev.foursquarecodechallenge.R
 import com.mkdev.foursquarecodechallenge.base.BaseAdapter
 import com.mkdev.foursquarecodechallenge.databinding.ItemVenueListBinding
+import com.mkdev.foursquarecodechallenge.extension.computeLocationDistance
 import javax.inject.Inject
 
 class VenueAdapter @Inject constructor(
@@ -43,12 +44,15 @@ class VenueAdapter @Inject constructor(
         RecyclerView.ViewHolder(binding.root), Binder<Venue> {
         override fun bind(item: Venue) {
             binding.apply {
+
+
                 textViewVenueName.text = item.name
                 textViewCategory.text = item.categoryType
-                textViewDistance.text = "${getComputeLocationDistance(item.distance)} ${
-                    textViewDistance.context.getString(R.string.km)
-                }"
-
+                textViewDistance.text = itemView.context.getString(
+                    R.string.less_than,
+                    item.distance.computeLocationDistance()
+                )
+                itemView.context.getString(R.string.less_than)
                 glide.load(item.categoryIcon).into(imageViewVenue)
 
                 root.setOnClickListener {
@@ -57,14 +61,6 @@ class VenueAdapter @Inject constructor(
                     }
                 }
             }
-        }
-
-        private fun getComputeLocationDistance(distance: Int): String {
-            var result = (distance / 1000).toString()
-            if (result == "0") {
-                result = itemView.context.getString(R.string.less_than) + " 1"
-            }
-            return result
         }
     }
 }

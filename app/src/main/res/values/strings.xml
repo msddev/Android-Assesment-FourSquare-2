@@ -4,6 +4,5 @@
     <string name="app_exit_label">Press BACK again to exit</string>
     <string name="venue_list_title_string">Venues List</string>
     <string name="venue_detail_title_string">Venues Detail</string>
-    <string name="km">km</string>
-    <string name="less_than">Less Than</string>
+    <string name="less_than">Less Than %s km</string>
 </resources>
