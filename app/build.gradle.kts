@@ -67,10 +67,11 @@ dependencies {
     UiDep.LifeCycle.forEach {
         implementation(it)
     }
+    // Paging
+    implementation(UiDep.paging)
     // Navigation
     implementation(UiDep.navigationFragmentKtx)
-    implementation(UiDep.navigationUiKtx)
-    // Dagger-Hilt
+    implementation(UiDep.navigationUiKtx)    // Dagger-Hilt
     implementation(UiDep.daggerHilt)
     kapt(UiDep.daggerHiltKapt)
     // Glide

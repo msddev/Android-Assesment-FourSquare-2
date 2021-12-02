@@ -36,6 +36,9 @@ object Versions {
     // Dagger - Hilt dependencies
     const val hiltAndroidVersion = "2.38.1"
 
+    // Paging
+    const val pagingVersion = "3.1.0"
+
     // Timber logging dependencies
     const val timberVersion = "5.0.1"
 

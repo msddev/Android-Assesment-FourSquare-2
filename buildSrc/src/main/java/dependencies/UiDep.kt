@@ -26,6 +26,9 @@ object UiDep {
     const val daggerHilt = Dependencies.DaggerHiltDep.hiltAndroid
     const val daggerHiltKapt = Dependencies.DaggerHiltDep.hiltAndroidKapt
 
+    // Paging
+    const val paging = Dependencies.PagingDep.pagingCommon
+
     // Coroutines
     val Coroutines = listOf(
         Dependencies.CoroutinesDep.coroutineCore,

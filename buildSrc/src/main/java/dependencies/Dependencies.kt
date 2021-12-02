@@ -44,6 +44,10 @@ object Dependencies {
             "com.google.dagger:hilt-android-compiler:${Versions.hiltAndroidVersion}"
     }
 
+    object PagingDep{
+        const val pagingCommon = "androidx.paging:paging-common:${Versions.pagingVersion}"
+    }
+
     object CoroutinesDep {
         const val coroutineCore =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineCoreVersion}"
