@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.mkdev.foursquarecodechallenge.R
 import com.mkdev.foursquarecodechallenge.databinding.ActivityMainBinding
 import com.mkdev.foursquarecodechallenge.extension.showSnackBar
@@ -28,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         appBarConfiguration = AppBarConfiguration(findNavController().graph)
+        setupActionBarWithNavController(findNavController())
     }
 
     private fun findNavController(): NavController {
@@ -56,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController().navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
