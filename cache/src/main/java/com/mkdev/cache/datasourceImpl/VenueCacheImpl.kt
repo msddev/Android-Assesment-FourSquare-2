@@ -24,6 +24,11 @@ class VenueCacheImpl @Inject constructor(
         }
     }
 
+    override suspend fun saveVenue(venue: VenueEntity) =
+        venueCacheMapper.mapToCached(venue).let {
+            venueDao.updateVenue(it.id, it.picture, it.phone)
+        }
+
     override suspend fun deleteAllVenues() =
         venueDao.deleteAllVenues()
 

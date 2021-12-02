@@ -10,6 +10,7 @@ interface VenueDataSource {
 
     // Cache
     suspend fun saveVenues(listVenues: List<VenueEntity>)
+    suspend fun saveVenue(venue: VenueEntity)
     suspend fun deleteAllVenues()
     suspend fun getLatestLocations(): List<String>
     suspend fun isCached(): Boolean

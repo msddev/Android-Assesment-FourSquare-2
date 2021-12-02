@@ -31,7 +31,7 @@ object AppModule {
         .setDefaultRequestOptions(
             RequestOptions()
                 .placeholder(R.drawable.image_place_holder)
-                .error(R.color.red_300)
+                .error(R.drawable.image_place_holder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
         )
 }

@@ -7,7 +7,7 @@ class VenueDataSourceFactory @Inject constructor(
     private val cacheDataSource: VenueCacheDataSource,
     private val remoteDataSource: VenueRemoteDataSource
 ) {
-    suspend fun getDataStore(isCached: Boolean): VenueDataSource {
+    fun getDataStore(isCached: Boolean): VenueDataSource {
         return if (isCached) {
             getCacheDataSource()
         } else {

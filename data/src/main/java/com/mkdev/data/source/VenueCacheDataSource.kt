@@ -18,6 +18,9 @@ class VenueCacheDataSource @Inject constructor(
     override suspend fun saveVenues(listVenues: List<VenueEntity>) =
         cache.saveVenues(listVenues)
 
+    override suspend fun saveVenue(venue: VenueEntity) =
+        cache.saveVenue(venue)
+
     override suspend fun deleteAllVenues() =
         cache.deleteAllVenues()
 

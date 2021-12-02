@@ -11,4 +11,5 @@ interface VenueRepository {
 
     // Cache
     suspend fun saveNearVenues(listNearVenues: List<Venue>, userCurrentLatLng: String)
+    suspend fun saveVenueDetail(venue: Venue)
 }

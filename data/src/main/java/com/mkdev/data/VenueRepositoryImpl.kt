@@ -27,19 +27,26 @@ class VenueRepositoryImpl @Inject constructor(
     }
 
     override fun getVenueDetailById(id: String): Flow<Venue> = flow {
-        val isCached = dataSourceFactory.getCacheDataSource().isCached()
-        val venuesDetailEntity =
+        val isCached =
+            dataSourceFactory.getCacheDataSource().getVenueDetailById(id).picture.isNotEmpty()
+        val venuesDetail = venueMapper.mapFromEntity(
             dataSourceFactory.getDataStore(isCached).getVenueDetailById(id)
-
-        emit(venueMapper.mapFromEntity(venuesDetailEntity))
+        )
+        saveVenueDetail(venuesDetail)
+        emit(venuesDetail)
     }
 
     override suspend fun saveNearVenues(listNearVenues: List<Venue>, userCurrentLatLng: String) {
-        val characterEntities = listNearVenues.map { venue ->
+        val venueEntities = listNearVenues.map { venue ->
             venue.userCurrentLatLng = userCurrentLatLng
             venueMapper.mapToEntity(venue)
         }
         dataSourceFactory.getCacheDataSource()
-            .saveVenues(characterEntities)
+            .saveVenues(venueEntities)
+    }
+
+    override suspend fun saveVenueDetail(venue: Venue) {
+        dataSourceFactory.getCacheDataSource()
+            .saveVenue(venueMapper.mapToEntity(venue))
     }
 }

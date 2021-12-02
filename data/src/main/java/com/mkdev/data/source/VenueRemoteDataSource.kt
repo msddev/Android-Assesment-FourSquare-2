@@ -19,6 +19,10 @@ class VenueRemoteDataSource @Inject constructor(
         throw UnsupportedOperationException("Save operation is not supported for RemoteDataSource.")
     }
 
+    override suspend fun saveVenue(venue: VenueEntity) {
+        throw UnsupportedOperationException("Save operation is not supported for RemoteDataSource.")
+    }
+
     override suspend fun deleteAllVenues() {
         throw UnsupportedOperationException("Delete operation is not supported for RemoteDataSource.")
     }

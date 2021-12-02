@@ -22,6 +22,9 @@ interface VenueDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVenue(venues: VenueCacheEntity)
 
+    @Query("update $VENUE_TABLE_NAME set picture=:picture, phone=:phone where id= :id")
+    fun updateVenue(id: String, picture: String, phone: String)
+
     @Query("delete from $VENUE_TABLE_NAME")
     fun deleteAllVenues()
 

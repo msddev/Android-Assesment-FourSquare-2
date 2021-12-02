@@ -13,18 +13,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewVenue"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:background="@color/blue_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/image_place_holder" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewVenueName"
@@ -33,24 +34,26 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:ellipsize="end"
             android:gravity="center|start"
-            android:maxLines="1"
-            android:scrollHorizontally="true"
+            android:lines="2"
             android:textAppearance="?attr/textAppearanceBody1"
+            android:textDirection="ltr"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Name" />
+            tools:text="text" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="10dp"
             android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:textColor="@color/black_800"
+            android:textDirection="ltr"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
             app:layout_constraintTop_toBottomOf="@+id/textViewVenueName"
@@ -61,24 +64,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="6dp"
             android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:textColor="@color/black_800"
+            android:textDirection="ltr"
             android:textSize="11sp"
             android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewVenue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
             app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
+            app:layout_constraintVertical_bias="0.7"
             tools:text="480M" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDistance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

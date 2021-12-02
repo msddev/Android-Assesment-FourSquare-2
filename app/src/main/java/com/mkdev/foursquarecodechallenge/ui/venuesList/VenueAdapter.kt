@@ -44,8 +44,6 @@ class VenueAdapter @Inject constructor(
         RecyclerView.ViewHolder(binding.root), Binder<Venue> {
         override fun bind(item: Venue) {
             binding.apply {
-
-
                 textViewVenueName.text = item.name
                 textViewCategory.text = item.categoryType
                 textViewDistance.text = itemView.context.getString(
