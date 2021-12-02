@@ -5,4 +5,7 @@
     <string name="venue_list_title_string">Venues List</string>
     <string name="venue_detail_title_string">Venues Detail</string>
     <string name="less_than">Less Than %s km</string>
+    <string name="location_is_not_valid">Location is not valid!</string>
+    <string name="no_phone_number">There is no phone number</string>
+    <string name="no_address">There is no address</string>
 </resources>

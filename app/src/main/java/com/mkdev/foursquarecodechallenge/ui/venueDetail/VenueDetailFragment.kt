@@ -1,5 +1,7 @@
 package com.mkdev.foursquarecodechallenge.ui.venueDetail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -36,6 +38,22 @@ class VenueDetailFragment :
 
         observe(viewModel.venuesDetail, ::onViewStateChange)
         viewModel.getVenueDetail(args.venueId)
+
+        binding.fabVenueLocation.setOnClickListener {
+            openLocationInMap()
+        }
+    }
+
+    private fun openLocationInMap() {
+        val location = viewModel.getLocationLatLng()
+        if (location.latitude == 0.0 || location.longitude == 0.0) {
+            handleErrorMessage(getString(R.string.location_is_not_valid))
+            return
+        }
+
+        val geoUri =
+            "http://maps.google.com/maps?q=loc:${location.latitude},${location.longitude} (ForeSquare)"
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(geoUri)))
     }
 
     private fun onViewStateChange(result: VenueDetailUIModel) {
@@ -49,8 +67,10 @@ class VenueDetailFragment :
                 result.data.let { venue ->
                     binding.apply {
                         textViewVenueName.text = venue.name
-                        textViewVenueAddress.text = venue.address
-                        textViewVenuePhone.text = venue.phone
+                        textViewVenueAddress.text = if (venue.address?.isEmpty() == true)
+                            getString(R.string.no_address) else venue.address
+                        textViewVenuePhone.text = if (venue.phone.isEmpty() || venue.phone == "0")
+                            getString(R.string.no_phone_number) else venue.phone
                         textViewDistance.text = getString(
                             R.string.less_than,
                             args.venueDistance.toInt().computeLocationDistance()
