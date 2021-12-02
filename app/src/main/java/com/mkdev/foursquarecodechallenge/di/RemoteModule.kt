@@ -1,6 +1,8 @@
 package com.mkdev.foursquarecodechallenge.di
 
+import com.mkdev.data.repository.VenueRemote
 import com.mkdev.foursquarecodechallenge.BuildConfig
+import com.mkdev.remote.VenueRemoteImpl
 import com.mkdev.remote.api.FourSquareService
 import com.mkdev.remote.api.ServiceFactory
 import dagger.Module
@@ -17,4 +19,9 @@ object RemoteModule {
     @Provides
     fun provideFourSquareService(): FourSquareService =
         ServiceFactory.create(BuildConfig.DEBUG)
+
+    @Singleton
+    @Provides
+    fun provideVenueRemote(venueRemoteImpl: VenueRemoteImpl): VenueRemote =
+        venueRemoteImpl
 }

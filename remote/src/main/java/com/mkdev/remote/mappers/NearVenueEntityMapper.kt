@@ -15,8 +15,8 @@ class NearVenueEntityMapper @Inject constructor() :
             data.venue.location.address,
             data.venue.location.distance,
             if (data.venue.categories.isNotEmpty()) data.venue.categories[0].name else "",
-            if (data.venue.categories.isNotEmpty()) "${data.venue.categories[0].icon.prefix}${data.venue.categories[0].icon.suffix}" else "",
-            if (data.venue.photos.groups.isNotEmpty() && data.venue.photos.groups[0].items.isNotEmpty()) "${data.venue.photos.groups[0].items[0].prefix}${data.venue.photos.groups[0].items[0].suffix}" else ""
+            if (data.venue.categories.isNotEmpty()) "${data.venue.categories[0].icon.prefix}64${data.venue.categories[0].icon.suffix}" else "",
+            if (data.venue.photos?.groups?.isNullOrEmpty() == false && !data.venue.photos.groups[0].items.isNullOrEmpty()) "${data.venue.photos.groups[0].items[0].prefix}240${data.venue.photos.groups[0].items[0].suffix}" else ""
         )
     }
 }

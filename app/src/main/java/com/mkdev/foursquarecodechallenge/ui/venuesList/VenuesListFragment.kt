@@ -3,15 +3,22 @@ package com.mkdev.foursquarecodechallenge.ui.venuesList
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mkdev.domain.model.VenueParams
 import com.mkdev.domain.model.VenueUIModel
 import com.mkdev.foursquarecodechallenge.base.BaseFragment
 import com.mkdev.foursquarecodechallenge.databinding.FragmentVenuesListBinding
 import com.mkdev.foursquarecodechallenge.extension.observe
 import com.mkdev.presentation.viewmodels.VenuesListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListViewModel>() {
+
+    private val limit = 20
+    private var offset = 0
 
     @Inject
     lateinit var venuesAdapter: VenueAdapter
@@ -24,7 +31,7 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getVenues()
+        viewModel.getVenues(VenueParams(latLng = "35.730673, 51.458880", limit = limit, offset = offset))
         observe(viewModel.venuesList, ::onViewStateChange)
         setupRecyclerView()
     }
@@ -35,10 +42,10 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        venuesAdapter.setItemClickListener { character ->
+        venuesAdapter.setItemClickListener { venue ->
             findNavController().navigate(
-                VenueListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                    character.id.toLong()
+                VenuesListFragmentDirections.actionVenuesListFragmentToVenueDetailFragment(
+                    venue.id
                 )
             )
         }

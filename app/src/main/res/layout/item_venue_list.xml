@@ -5,9 +5,9 @@
     android:id="@+id/cardViewHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
     android:elevation="3dp"
     app:cardCornerRadius="@dimen/card_view_radius">
 
@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
+            android:background="@color/blue_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,49 +37,39 @@
             android:gravity="center|start"
             android:maxLines="1"
             android:scrollHorizontally="true"
-            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Name" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewStatus"
+            android:id="@+id/textViewCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:textAppearance="?attr/textAppearanceBody2"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
             app:layout_constraintTop_toBottomOf="@+id/textViewVenueName"
             tools:text="Alive - Human" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewKnownLocationLabel"
+            android:id="@+id/textViewDistance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/venue_list_label_last_known_location"
-            android:textAppearance="?attr/textAppearanceBody1"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:textSize="11sp"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
-            app:layout_constraintTop_toBottomOf="@+id/textViewStatus"
-            tools:text="Last known location" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewKnownLocation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textAppearance="?attr/textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKnownLocationLabel"
-            tools:text="Planet Earth" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
+            tools:text="480M" />
 
         <View
             android:layout_width="0dp"
@@ -87,7 +78,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewVenue"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKnownLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDistance" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

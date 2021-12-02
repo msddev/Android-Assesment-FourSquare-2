@@ -14,5 +14,5 @@ data class Venue(
     @SerializedName("categories")
     val categories: List<Category>,
     @SerializedName("photos")
-    val photos: Photos
+    val photos: Photos?
 )
