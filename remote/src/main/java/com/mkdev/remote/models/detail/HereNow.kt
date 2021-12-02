@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class HereNow(
     @SerializedName("count")
-    val count: Int
+    val count: Int = 0
 )

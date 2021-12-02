@@ -2,11 +2,11 @@ package com.mkdev.remote.models
 
 
 import com.google.gson.annotations.SerializedName
-import com.mkdev.remote.models.explore.Response
+import com.mkdev.remote.models.explore.Group
 
 data class ExploreVenuesResponse(
-    @SerializedName("meta")
-    val meta: Meta,
-    @SerializedName("response")
-    val response: Response
+    @SerializedName("totalResults")
+    val totalResults: Int,
+    @SerializedName("groups")
+    val groups: List<Group>
 )

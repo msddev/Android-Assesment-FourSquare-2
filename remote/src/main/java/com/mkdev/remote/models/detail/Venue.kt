@@ -6,17 +6,17 @@ import com.mkdev.remote.models.Category
 
 data class Venue(
     @SerializedName("id")
-    val id: String,
+    val id: String = "",
     @SerializedName("name")
-    val name: String,
+    val name: String = "",
     @SerializedName("location")
-    val location: Location,
+    val location: Location = Location(),
     @SerializedName("categories")
-    val categories: List<Category>,
+    val categories: List<Category> = listOf(),
     @SerializedName("likes")
-    val likes: Likes,
+    val likes: Likes = Likes(),
     @SerializedName("dislike")
-    val dislike: Boolean,
+    val dislike: Boolean = false,
     @SerializedName("hereNow")
-    val hereNow: HereNow
+    val hereNow: HereNow = HereNow()
 )

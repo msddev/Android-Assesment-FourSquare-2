@@ -1,5 +1,6 @@
 package com.mkdev.remote.api
 
+import com.mkdev.remote.models.BaseApiResponse
 import com.mkdev.remote.models.ExploreVenuesResponse
 import com.mkdev.remote.models.VenueDetailResponse
 import retrofit2.http.GET
@@ -17,10 +18,10 @@ interface FourSquareService {
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,
         @Query("sortByDistance") sortByDistance: Int = 1
-    ): ExploreVenuesResponse
+    ): BaseApiResponse<ExploreVenuesResponse>
 
     @GET("v2/venues/{id}")
     suspend fun getVenueById(
         @Path("id") id: String
-    ): VenueDetailResponse
+    ): BaseApiResponse<VenueDetailResponse>
 }

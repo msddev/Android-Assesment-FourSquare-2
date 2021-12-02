@@ -1,13 +1,9 @@
 package com.mkdev.remote.models
 
-
 import com.google.gson.annotations.SerializedName
-import com.mkdev.remote.models.Meta
-import com.mkdev.remote.models.detail.Response
+import com.mkdev.remote.models.detail.Venue
 
 data class VenueDetailResponse(
-    @SerializedName("meta")
-    val meta: Meta,
-    @SerializedName("response")
-    val response: Response
+    @SerializedName("venue")
+    val venue: Venue
 )
