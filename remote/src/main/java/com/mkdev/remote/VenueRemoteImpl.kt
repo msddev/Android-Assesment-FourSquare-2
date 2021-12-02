@@ -20,7 +20,7 @@ class VenueRemoteImpl @Inject constructor(
             params.limit,
             params.offset
         ).data?.let { data ->
-            data.groups?.get(0)?.items?.map { nearVenueEntityMapper.mapFromResponse(it) }
+            data.groups?.getOrNull(0)?.items?.map { nearVenueEntityMapper.mapFromResponse(it) }
         } ?: run {
             listOf()
         }

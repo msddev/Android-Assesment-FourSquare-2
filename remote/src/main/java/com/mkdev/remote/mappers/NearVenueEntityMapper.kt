@@ -1,7 +1,9 @@
 package com.mkdev.remote.mappers
 
 import com.mkdev.data.models.VenueEntity
+import com.mkdev.remote.models.Icon
 import com.mkdev.remote.models.explore.Item
+import com.mkdev.remote.models.explore.ItemPhotoGroup
 import javax.inject.Inject
 
 class NearVenueEntityMapper @Inject constructor() :
@@ -14,20 +16,18 @@ class NearVenueEntityMapper @Inject constructor() :
             longitude = data.venue?.location?.lng ?: 0.0,
             address = data.venue?.location?.address ?: "",
             distance = data.venue?.location?.distance ?: 0,
-            categoryType = data.venue?.categories?.get(0)?.name ?: "",
-            categoryIcon = "${data.venue?.categories?.get(0)?.icon?.prefix}64${
-                data.venue?.categories?.get(
-                    0
-                )?.icon?.suffix
-            }",
-            picture = "${data.venue?.photos?.groups?.get(0)?.items?.get(0)?.prefix}240${
-                data.venue?.photos?.groups?.get(
-                    0
-                )?.items?.get(0)?.suffix
-            }",
+            categoryType = data.venue?.categories?.getOrNull(0)?.name ?: "",
+            categoryIcon = getCategoryIcon(data.venue?.categories?.getOrNull(0)?.icon),
+            picture = getPhoto(data.venue?.photos?.groups?.getOrNull(0)?.items?.getOrNull(0)),
             userCurrentLatLng = "",
             phone = "",
             likes = 0
         )
     }
+
+    private fun getPhoto(photo: ItemPhotoGroup?): String =
+            "${photo?.prefix}400${photo?.suffix}"
+
+    private fun getCategoryIcon(icon: Icon?): String =
+            "${icon?.prefix}64${icon?.suffix}"
 }

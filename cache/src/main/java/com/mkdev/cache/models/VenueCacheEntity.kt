@@ -12,7 +12,7 @@ data class VenueCacheEntity(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val address: String,
+    val address: String? = "",
     val distance: Int,
     @ColumnInfo(name = "category_type")
     val categoryType: String,
