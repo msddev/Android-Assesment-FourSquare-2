@@ -12,7 +12,8 @@ import javax.inject.Inject
 
 class VenueRemoteImpl @Inject constructor(
     private val service: FourSquareService,
-    private val nearVenueEntityMapper: NearVenueEntityMapper
+    private val nearVenueEntityMapper: NearVenueEntityMapper,
+    private val venueDetailEntityMapper: VenueDetailEntityMapper
 ) : VenueRemote {
     override suspend fun getNearVenues(params: VenueParamsEntity): List<VenueEntity> =
         service.getNearVenues(
@@ -20,13 +21,15 @@ class VenueRemoteImpl @Inject constructor(
             params.limit,
             params.offset
         ).data?.let { data ->
-            data.groups[0].items.map { nearVenueEntityMapper.mapFromResponse(it) }
+            data.groups?.get(0)?.items?.map { nearVenueEntityMapper.mapFromResponse(it) }
         } ?: run {
             listOf()
         }
 
     override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
-        VenueDetailEntityMapper().mapFromResponse(service.getVenueById(id).data?.venueDetail ?: VenueDetail())
+        venueDetailEntityMapper.mapFromResponse(
+            service.getVenueById(id).data?.venueDetail ?: VenueDetail()
+        )
 
 
 }

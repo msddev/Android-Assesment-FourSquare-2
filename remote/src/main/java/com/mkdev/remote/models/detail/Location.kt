@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class Location(
     @SerializedName("lat")
-    val lat: Double = 0.0,
+    val lat: Double? = 0.0,
     @SerializedName("lng")
-    val lng: Double = 0.0,
+    val lng: Double? = 0.0,
     @SerializedName("cc")
-    val cc: String = "",
+    val cc: String? = "",
     @SerializedName("country")
-    val country: String = "",
+    val country: String? = "",
     @SerializedName("formattedAddress")
-    val formattedAddress: List<String> = listOf()
+    val formattedAddress: List<String>? = listOf()
 )

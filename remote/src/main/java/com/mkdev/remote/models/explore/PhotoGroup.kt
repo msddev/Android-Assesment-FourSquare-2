@@ -1,16 +1,14 @@
 package com.mkdev.remote.models.explore
 
-
 import com.google.gson.annotations.SerializedName
-import com.mkdev.remote.models.explore.ItemPhotoGroup
 
 data class PhotoGroup(
     @SerializedName("type")
-    val type: String,
+    val type: String? = "",
     @SerializedName("name")
-    val name: String,
+    val name: String? = "",
     @SerializedName("count")
-    val count: Int,
+    val count: Int? = 0,
     @SerializedName("items")
-    val items: List<ItemPhotoGroup>
+    val items: List<ItemPhotoGroup>? = listOf()
 )

@@ -1,6 +1,7 @@
 package com.mkdev.foursquarecodechallenge.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import com.mkdev.foursquarecodechallenge.core.dialog.dismissLoadingDialog
 import com.mkdev.foursquarecodechallenge.core.dialog.showLoadingDialog
 import com.mkdev.foursquarecodechallenge.extension.showSnackBar
 import com.mkdev.presentation.viewmodels.BaseViewModel
-import timber.log.Timber
 
 abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragment() {
 
@@ -36,7 +36,7 @@ abstract class BaseFragment<VB : ViewBinding, ViewModel : BaseViewModel> : Fragm
     protected open fun handleErrorMessage(message: String?) {
         if (message.isNullOrBlank()) return
         dismissLoadingDialog()
-        Timber.e(message)
+        Log.e("error", message)
         showSnackBar(binding.root, message)
     }
 }

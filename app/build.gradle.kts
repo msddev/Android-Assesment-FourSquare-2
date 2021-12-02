@@ -76,8 +76,6 @@ dependencies {
     // Glide
     implementation(UiDep.glide)
     kapt(UiDep.glideKapt)
-    // Timber
-    implementation(UiDep.timber)
     // Test Dependencies
     testImplementation(UiDep.Test.junit)
     testImplementation(UiDep.Test.assertJ)

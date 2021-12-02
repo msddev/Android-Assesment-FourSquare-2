@@ -5,5 +5,5 @@ import com.mkdev.remote.models.detail.VenueDetail
 
 data class VenueDetailResponse(
     @SerializedName("venue")
-    val venueDetail: VenueDetail
+    val venueDetail: VenueDetail? = VenueDetail()
 )

@@ -19,7 +19,7 @@ data class VenueCacheEntity(
     @ColumnInfo(name = "category_icon")
     val categoryIcon: String,
     val picture: String,
+    val phone: String,
     @ColumnInfo(name = "user_location")
-    val userLocation: String,
-    val phone: String
+    val userLocation: String
 )
