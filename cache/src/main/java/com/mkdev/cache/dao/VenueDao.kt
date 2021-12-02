@@ -16,6 +16,9 @@ interface VenueDao {
     @Query("select * from $VENUE_TABLE_NAME where user_location= :latLng")
     fun getVenues(latLng: String): List<VenueCacheEntity>
 
+    @Query("select * from $VENUE_TABLE_NAME where user_location= :latLng limit :limit offset :offset")
+    fun getVenuesPaging(latLng: String, limit: Int, offset: Int): List<VenueCacheEntity>
+
     @Query("select * from $VENUE_TABLE_NAME where id= :id")
     fun getVenueById(id: String): VenueCacheEntity
 

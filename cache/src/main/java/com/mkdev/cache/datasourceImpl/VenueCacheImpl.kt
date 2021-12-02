@@ -3,6 +3,7 @@ package com.mkdev.cache.datasourceImpl
 import com.mkdev.cache.dao.VenueDao
 import com.mkdev.cache.mapper.VenueCacheMapper
 import com.mkdev.data.models.VenueEntity
+import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueCache
 import javax.inject.Inject
 
@@ -12,6 +13,10 @@ class VenueCacheImpl @Inject constructor(
 ) : VenueCache {
     override suspend fun getVenues(latLng: String): List<VenueEntity> =
         venueDao.getVenues(latLng).map { cacheVenue ->
+            venueCacheMapper.mapFromCached(cacheVenue)
+        }
+    override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
+        venueDao.getVenuesPaging(params.latLng, params.limit, params.offset).map { cacheVenue ->
             venueCacheMapper.mapFromCached(cacheVenue)
         }
 
@@ -37,4 +42,10 @@ class VenueCacheImpl @Inject constructor(
 
     override suspend fun isCached(): Boolean =
         venueDao.getVenues().isNotEmpty()
+
+    override suspend fun isCached(latLng: String): Boolean =
+        venueDao.getVenues(latLng).isNotEmpty()
+
+    override suspend fun isCached(params: VenueParamsEntity): Boolean =
+        venueDao.getVenuesPaging(params.latLng, params.limit, params.offset).isNotEmpty()
 }

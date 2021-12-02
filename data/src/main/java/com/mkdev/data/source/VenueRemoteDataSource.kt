@@ -34,4 +34,12 @@ class VenueRemoteDataSource @Inject constructor(
     override suspend fun isCached(): Boolean {
         throw UnsupportedOperationException("Check cache is not supported for RemoteDataSource.")
     }
+
+    override suspend fun isCached(latLng: String): Boolean {
+        throw UnsupportedOperationException("Check cache is not supported for RemoteDataSource.")
+    }
+
+    override suspend fun isCached(params: VenueParamsEntity): Boolean {
+        throw UnsupportedOperationException("Check cache is not supported for RemoteDataSource.")
+    }
 }

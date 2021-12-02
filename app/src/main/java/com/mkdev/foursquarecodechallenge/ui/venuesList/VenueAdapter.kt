@@ -1,6 +1,7 @@
 package com.mkdev.foursquarecodechallenge.ui.venuesList
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -19,12 +20,15 @@ class VenueAdapter @Inject constructor(
 ) : BaseAdapter<Venue>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Venue>() {
-        override fun areItemsTheSame(oldItem: Venue, newItem: Venue): Boolean =
-            oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Venue, newItem: Venue): Boolean {
+            Log.d("mytag", "${oldItem.id} , ${newItem.id}")
+            return oldItem.id == newItem.id
+        }
 
-        override fun areContentsTheSame(oldItem: Venue, newItem: Venue): Boolean =
-            oldItem.hashCode() == newItem.hashCode()
-
+        override fun areContentsTheSame(oldItem: Venue, newItem: Venue): Boolean {
+            Log.d("mytag", "${oldItem.id} , ${newItem.id}")
+            return oldItem.name == newItem.name
+        }
     }
 
     override val differ: AsyncListDiffer<Venue> = AsyncListDiffer(this, diffCallback)

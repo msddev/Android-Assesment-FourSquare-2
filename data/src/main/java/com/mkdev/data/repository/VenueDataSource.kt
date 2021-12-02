@@ -14,4 +14,6 @@ interface VenueDataSource {
     suspend fun deleteAllVenues()
     suspend fun getLatestLocations(): List<String>
     suspend fun isCached(): Boolean
+    suspend fun isCached(latLng: String): Boolean
+    suspend fun isCached(params: VenueParamsEntity): Boolean
 }

@@ -10,7 +10,7 @@ class VenueCacheDataSource @Inject constructor(
     private val cache: VenueCache
 ) : VenueDataSource {
     override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
-        cache.getVenues(params.latLng)
+        cache.getVenues(params)
 
     override suspend fun getVenueDetailById(id: String): VenueEntity =
         cache.getVenueDetailById(id)
@@ -29,4 +29,10 @@ class VenueCacheDataSource @Inject constructor(
 
     override suspend fun isCached(): Boolean =
         cache.isCached()
+
+    override suspend fun isCached(latLng: String): Boolean =
+        cache.isCached(latLng)
+
+    override suspend fun isCached(params: VenueParamsEntity): Boolean =
+        cache.isCached(params)
 }

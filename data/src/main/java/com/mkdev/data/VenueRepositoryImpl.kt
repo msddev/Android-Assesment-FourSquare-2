@@ -12,12 +12,13 @@ import javax.inject.Inject
 
 class VenueRepositoryImpl @Inject constructor(
     private val dataSourceFactory: VenueDataSourceFactory,
-    private val venueMapper: VenueMapper
+    private val venueMapper: VenueMapper,
+    private val venueBodyMapper: VenueBodyMapper
 ) : VenueRepository {
     override fun getNearVenues(param: VenueParams): Flow<List<Venue>> = flow {
-        val isCached = dataSourceFactory.getCacheDataSource().isCached()
+        val isCached = dataSourceFactory.getCacheDataSource().isCached(venueBodyMapper.mapToEntity(param))
         val venuesList =
-            dataSourceFactory.getDataStore(isCached).getVenues(VenueBodyMapper().mapToEntity(param))
+            dataSourceFactory.getDataStore(isCached).getVenues(venueBodyMapper.mapToEntity(param))
                 .map { venueEntity ->
                     venueEntity.userCurrentLatLng = param.latLng
                     venueMapper.mapFromEntity(venueEntity)
