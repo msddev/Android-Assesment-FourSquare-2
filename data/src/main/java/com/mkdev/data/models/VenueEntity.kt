@@ -11,5 +11,6 @@ data class VenueEntity(
     val categoryIcon: String,
     val picture: String,
     val phone: String,
+    val likes: Int,
     var userCurrentLatLng: String
 )

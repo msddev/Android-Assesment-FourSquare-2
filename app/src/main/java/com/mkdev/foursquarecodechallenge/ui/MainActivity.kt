@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-    private var currentNavController: LiveData<NavController>? = null
     private var backPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (findNavController().graph?.startDestination == findNavController().currentDestination?.id) {
+        if (findNavController().graph.startDestination == findNavController().currentDestination?.id) {
             if (backPressedOnce) {
                 super.onBackPressed()
                 return

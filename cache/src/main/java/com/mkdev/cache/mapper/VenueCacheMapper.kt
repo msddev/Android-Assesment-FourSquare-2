@@ -17,7 +17,8 @@ class VenueCacheMapper @Inject constructor() : CacheMapper<VenueCacheEntity, Ven
             categoryIcon = type.categoryIcon,
             picture = type.picture,
             userCurrentLatLng = type.userLocation,
-            phone = type.phone
+            phone = type.phone,
+            likes = type.likes
         )
 
     override fun mapToCached(type: VenueEntity): VenueCacheEntity =
@@ -32,8 +33,7 @@ class VenueCacheMapper @Inject constructor() : CacheMapper<VenueCacheEntity, Ven
             categoryIcon = type.categoryIcon,
             picture = type.picture,
             userLocation = type.userCurrentLatLng,
-            phone = type.phone
+            phone = type.phone,
+            likes = type.likes
         )
-
-
 }

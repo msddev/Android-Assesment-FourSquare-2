@@ -1,6 +1,5 @@
 package com.mkdev.remote
 
-import com.mkdev.data.models.VenueDetailEntity
 import com.mkdev.data.models.VenueEntity
 import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueRemote
@@ -26,10 +25,8 @@ class VenueRemoteImpl @Inject constructor(
             listOf()
         }
 
-    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
+    override suspend fun getVenueDetailById(id: String): VenueEntity =
         venueDetailEntityMapper.mapFromResponse(
             service.getVenueById(id).data?.venueDetail ?: VenueDetail()
         )
-
-
 }

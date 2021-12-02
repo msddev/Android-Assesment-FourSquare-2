@@ -1,13 +1,13 @@
 package com.mkdev.remote.mappers
 
-import com.mkdev.data.models.VenueDetailEntity
+import com.mkdev.data.models.VenueEntity
 import com.mkdev.remote.models.detail.VenueDetail
 import javax.inject.Inject
 
 class VenueDetailEntityMapper @Inject constructor() :
-    EntityMapper<VenueDetail, VenueDetailEntity> {
-    override fun mapFromResponse(data: VenueDetail): VenueDetailEntity {
-        return VenueDetailEntity(
+    EntityMapper<VenueDetail, VenueEntity> {
+    override fun mapFromResponse(data: VenueDetail): VenueEntity {
+        return VenueEntity(
             id = data.id ?: "",
             name = data.name ?: "",
             latitude = data.location?.lat ?: 0.0,
@@ -17,7 +17,9 @@ class VenueDetailEntityMapper @Inject constructor() :
             categoryIcon = "${data.categories?.get(0)?.icon?.prefix}64${data.categories?.get(0)?.icon?.suffix}",
             picture = data.photo?.prefix?.plus(400)?.plus(data.photo.suffix) ?: "",
             likes = data.likes?.count ?: 0,
-            phone = data.contact?.phone ?: ""
+            phone = data.contact?.phone ?: "",
+            distance = 0,
+            userCurrentLatLng = ""
         )
     }
 

@@ -1,6 +1,5 @@
 package com.mkdev.remote.models.detail
 
-
 import com.google.gson.annotations.SerializedName
 import com.mkdev.remote.models.Category
 

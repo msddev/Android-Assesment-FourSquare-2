@@ -1,6 +1,5 @@
 package com.mkdev.data.source
 
-import com.mkdev.data.models.VenueDetailEntity
 import com.mkdev.data.models.VenueEntity
 import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueCache
@@ -13,7 +12,7 @@ class VenueCacheDataSource @Inject constructor(
     override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
         cache.getVenues(params.latLng)
 
-    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
+    override suspend fun getVenueDetailById(id: String): VenueEntity =
         cache.getVenueDetailById(id)
 
     override suspend fun saveVenues(listVenues: List<VenueEntity>) =

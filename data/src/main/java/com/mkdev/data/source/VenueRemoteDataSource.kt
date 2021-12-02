@@ -1,6 +1,5 @@
 package com.mkdev.data.source
 
-import com.mkdev.data.models.VenueDetailEntity
 import com.mkdev.data.models.VenueEntity
 import com.mkdev.data.models.VenueParamsEntity
 import com.mkdev.data.repository.VenueDataSource
@@ -13,7 +12,7 @@ class VenueRemoteDataSource @Inject constructor(
     override suspend fun getVenues(params: VenueParamsEntity): List<VenueEntity> =
         remote.getNearVenues(params)
 
-    override suspend fun getVenueDetailById(id: String): VenueDetailEntity =
+    override suspend fun getVenueDetailById(id: String): VenueEntity =
         remote.getVenueDetailById(id)
 
     override suspend fun saveVenues(listVenues: List<VenueEntity>) {

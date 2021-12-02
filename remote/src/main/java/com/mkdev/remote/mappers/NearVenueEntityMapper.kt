@@ -26,7 +26,8 @@ class NearVenueEntityMapper @Inject constructor() :
                 )?.items?.get(0)?.suffix
             }",
             userCurrentLatLng = "",
-            phone = ""
+            phone = "",
+            likes = 0
         )
     }
 }
