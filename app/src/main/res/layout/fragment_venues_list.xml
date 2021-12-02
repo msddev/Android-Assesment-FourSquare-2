@@ -23,9 +23,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="4dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/item_venue_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

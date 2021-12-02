@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (currentNavController?.value?.graph?.startDestination == currentNavController?.value?.currentDestination?.id) {
+        if (findNavController().graph?.startDestination == findNavController().currentDestination?.id) {
             if (backPressedOnce) {
                 super.onBackPressed()
                 return

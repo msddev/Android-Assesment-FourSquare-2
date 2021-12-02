@@ -22,9 +22,10 @@ class VenueRepositoryImpl @Inject constructor(
         val venuesList =
             dataSourceFactory.getDataStore(isCached).getVenues(VenueBodyMapper().mapToEntity(param))
                 .map { venueEntity ->
+                    venueEntity.userCurrentLatLng = param.latLng
                     venueMapper.mapFromEntity(venueEntity)
                 }
-        saveNearVenues(venuesList)
+        saveNearVenues(venuesList, param.latLng)
         emit(venuesList)
     }
 
@@ -36,8 +37,9 @@ class VenueRepositoryImpl @Inject constructor(
         emit(venueDetailMapper.mapFromEntity(venuesDetailEntity))
     }
 
-    override suspend fun saveNearVenues(listNearVenues: List<Venue>) {
+    override suspend fun saveNearVenues(listNearVenues: List<Venue>, userCurrentLatLng: String) {
         val characterEntities = listNearVenues.map { venue ->
+            venue.userCurrentLatLng = userCurrentLatLng
             venueMapper.mapToEntity(venue)
         }
         dataSourceFactory.getCacheDataSource()

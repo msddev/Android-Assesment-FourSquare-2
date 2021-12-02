@@ -9,5 +9,6 @@ data class VenueEntity(
     val distance: Int,
     val categoryType: String,
     val categoryIcon: String,
-    val picture: String
+    val picture: String,
+    var userCurrentLatLng: String
 )

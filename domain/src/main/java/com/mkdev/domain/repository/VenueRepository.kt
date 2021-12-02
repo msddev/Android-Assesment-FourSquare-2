@@ -13,5 +13,5 @@ interface VenueRepository {
     fun getVenueDetailById(id: String): Flow<VenueDetail>
 
     // Cache
-    suspend fun saveNearVenues(listNearVenues: List<Venue>)
+    suspend fun saveNearVenues(listNearVenues: List<Venue>, userCurrentLatLng:String)
 }

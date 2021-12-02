@@ -5,9 +5,10 @@ data class Venue(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val address: String ?= "",
+    val address: String? = "",
     val distance: Int,
     val categoryType: String,
     val categoryIcon: String,
-    val picture: String
+    val picture: String,
+    var userCurrentLatLng: String
 )
