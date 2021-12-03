@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         if (isLocationEnable()) {
             if (hasLocationPermission()) {
-                enableLocation()
+                enableLocationAndLoadFragment()
             } else {
                 requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
             }
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == PERMISSION_ACCESS_COARSE_LOCATION_ID) {
             if (grantResults.getOrNull(0) == PackageManager.PERMISSION_GRANTED) {
-                enableLocation()
+                enableLocationAndLoadFragment()
             } else {
                 showSnackBar(binding.root, getString(R.string.location_permission_hint))
                 requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 if (isLocationEnable()) {
                     locationDialog?.dismiss()
                     if (hasLocationPermission()) {
-                        enableLocation()
+                        enableLocationAndLoadFragment()
                     } else {
                         requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
                     }
@@ -107,9 +107,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun enableLocation() {
+    private fun addNavigationHostFragment() {
+        val finalHost = NavHostFragment.create(R.navigation.main_navigation)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.navigationHostFragment, finalHost)
+            .setPrimaryNavigationFragment(finalHost)
+            .commit()
+
+        //appBarConfiguration = AppBarConfiguration(findNavController().graph)
+        //setupActionBarWithNavController(findNavController())
+    }
+
+    private fun enableLocationAndLoadFragment() {
         bindLocationManager()
         setupLocationChecker()
+        //addNavigationHostFragment()
     }
 
     private fun bindLocationManager() {

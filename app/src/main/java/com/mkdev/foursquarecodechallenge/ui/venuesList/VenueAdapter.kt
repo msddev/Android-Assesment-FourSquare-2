@@ -21,12 +21,10 @@ class VenueAdapter @Inject constructor(
 
     private val diffCallback = object : DiffUtil.ItemCallback<Venue>() {
         override fun areItemsTheSame(oldItem: Venue, newItem: Venue): Boolean {
-            Log.d("mytag", "${oldItem.id} , ${newItem.id}")
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Venue, newItem: Venue): Boolean {
-            Log.d("mytag", "${oldItem.id} , ${newItem.id}")
             return oldItem.name == newItem.name
         }
     }

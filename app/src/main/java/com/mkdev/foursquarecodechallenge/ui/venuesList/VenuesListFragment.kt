@@ -7,7 +7,9 @@ import android.content.IntentFilter
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
@@ -41,16 +43,28 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     override fun getViewBinding(): FragmentVenuesListBinding =
         FragmentVenuesListBinding.inflate(layoutInflater)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //setupLocationBroadcast()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getCurrentLocationLatLng()
-        observe(viewModel.currentLocation, ::onCurrentLocation)
-        observe(viewModel.isLocationChanged, ::onIsLocationChanged)
+        //observe(viewModel.currentLocation, ::onCurrentLocation)
+        //observe(viewModel.isLocationChanged, ::onIsLocationChanged)
+        viewModel.getVenues(
+            VenueParams(
+                latLng = "35.730673, 51.458880",
+                limit = limit,
+                offset = offset
+            )
+        )
         observe(viewModel.venuesList, ::onViewStateChange)
 
+        //viewModel.getCurrentLocationLatLng()
         setupRecyclerView()
-        setupLocationBroadcast()
     }
 
     private fun onCurrentLocation(latLng: String) {
@@ -59,7 +73,7 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
 
         viewModel.getVenues(
             VenueParams(
-                latLng = currentLatLng,
+                latLng = "35.730673, 51.458880",
                 limit = limit,
                 offset = offset
             )
@@ -172,7 +186,7 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     }
 
     override fun onDestroyView() {
-        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(locationBroadcast)
+        //LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(locationBroadcast)
         super.onDestroyView()
     }
 }
