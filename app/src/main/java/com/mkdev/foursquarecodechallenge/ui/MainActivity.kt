@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            delay(1500)
+            delay(1200)
             openSettingPage()
         }
     }
