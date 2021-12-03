@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        appBarConfiguration = AppBarConfiguration(findNavController().graph)
-        setupActionBarWithNavController(findNavController())
 
         if (isLocationEnable()) {
             if (hasLocationPermission()) {
@@ -108,20 +106,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNavigationHostFragment() {
-        val finalHost = NavHostFragment.create(R.navigation.main_navigation)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.navigationHostFragment, finalHost)
-            .setPrimaryNavigationFragment(finalHost)
-            .commit()
-
-        //appBarConfiguration = AppBarConfiguration(findNavController().graph)
-        //setupActionBarWithNavController(findNavController())
+        val inflater = findNavController().navInflater
+        val graph = inflater.inflate(R.navigation.main_navigation)
+        findNavController().graph = graph
+        appBarConfiguration = AppBarConfiguration(findNavController().graph)
+        setupActionBarWithNavController(findNavController())
     }
 
     private fun enableLocationAndLoadFragment() {
         bindLocationManager()
         setupLocationChecker()
-        //addNavigationHostFragment()
+        addNavigationHostFragment()
     }
 
     private fun bindLocationManager() {
