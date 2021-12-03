@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var timerLocation: CountDownTimer? = null
-    private var locationDialog: AlertDialog? = null
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
@@ -50,16 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        if (isLocationEnable()) {
-            if (hasLocationPermission()) {
-                enableLocationAndLoadFragment()
-            } else {
-                requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
-            }
-        } else {
-            showLocationEnableRequest()
-        }
     }
 
     override fun onRequestPermissionsResult(
@@ -76,32 +65,6 @@ class MainActivity : AppCompatActivity() {
                 showSnackBar(binding.root, getString(R.string.location_permission_hint))
                 requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
             }
-        }
-    }
-
-    private fun showLocationEnableRequest() {
-        locationDialog = showDialog(
-            message = getString(R.string.enable_location),
-            cancelable = false,
-            textPositive = getString(R.string.ok_string),
-            positiveListener = {
-                if (isLocationEnable()) {
-                    locationDialog?.dismiss()
-                    if (hasLocationPermission()) {
-                        enableLocationAndLoadFragment()
-                    } else {
-                        requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
-                    }
-                } else {
-                    showSnackBar(binding.root, getString(R.string.no_location))
-                    locationDialog?.show()
-                }
-            }
-        )
-
-        lifecycleScope.launch {
-            delay(1200)
-            openSettingPage()
         }
     }
 
@@ -174,6 +137,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController().navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isLocationEnable()) {
+            if (hasLocationPermission()) {
+                enableLocationAndLoadFragment()
+            } else {
+                requestLocationPermission(PERMISSION_ACCESS_COARSE_LOCATION_ID)
+            }
+        } else {
+            showDialog(
+                message = getString(R.string.enable_location),
+                cancelable = false,
+                textPositive = getString(R.string.ok_string),
+                positiveListener = {
+                    openSettingPage()
+                }
+            )
+        }
     }
 
     override fun onDestroy() {
