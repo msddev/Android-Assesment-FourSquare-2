@@ -7,9 +7,7 @@ import android.content.IntentFilter
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
@@ -46,24 +44,17 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //setupLocationBroadcast()
+        viewModel.getCurrentLocationLatLng()
+
+        observe(viewModel.currentLocation, ::onCurrentLocation)
+        observe(viewModel.isLocationChanged, ::onIsLocationChanged)
+        observe(viewModel.venuesList, ::onViewStateChange)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //observe(viewModel.currentLocation, ::onCurrentLocation)
-        //observe(viewModel.isLocationChanged, ::onIsLocationChanged)
-        viewModel.getVenues(
-            VenueParams(
-                latLng = "35.730673, 51.458880",
-                limit = limit,
-                offset = offset
-            )
-        )
-        observe(viewModel.venuesList, ::onViewStateChange)
-
-        //viewModel.getCurrentLocationLatLng()
+        setupLocationBroadcast()
         setupRecyclerView()
     }
 
@@ -73,7 +64,7 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
 
         viewModel.getVenues(
             VenueParams(
-                latLng = "35.730673, 51.458880",
+                latLng = currentLatLng,
                 limit = limit,
                 offset = offset
             )
@@ -186,7 +177,7 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     }
 
     override fun onDestroyView() {
-        //LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(locationBroadcast)
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(locationBroadcast)
         super.onDestroyView()
     }
 }
