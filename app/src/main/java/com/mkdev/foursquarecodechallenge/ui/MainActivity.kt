@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.mkdev.foursquarecodechallenge.R
 import com.mkdev.foursquarecodechallenge.core.dialog.showDialog
+import com.mkdev.foursquarecodechallenge.core.dialog.showLoadingDialog
 import com.mkdev.foursquarecodechallenge.databinding.ActivityMainBinding
 import com.mkdev.foursquarecodechallenge.extension.*
 import com.mkdev.foursquarecodechallenge.utils.LifecycleBoundLocationManager
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             super.onLocationResult(locationResult)
+            addNavigationHostFragment()
         }
     }
 
@@ -77,9 +80,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun enableLocationAndLoadFragment() {
+        showLoadingDialog()
         bindLocationManager()
         setupLocationChecker()
-        addNavigationHostFragment()
     }
 
     private fun bindLocationManager() {
