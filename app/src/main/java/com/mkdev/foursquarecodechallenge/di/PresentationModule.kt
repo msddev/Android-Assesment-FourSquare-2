@@ -1,6 +1,8 @@
 package com.mkdev.foursquarecodechallenge.di
 
 import android.content.Context
+import com.mkdev.foursquarecodechallenge.locationProviders.LocationProviderImpl
+import com.mkdev.presentation.locationProviders.LocationProvider
 import com.mkdev.presentation.utils.CoroutineContextProvider
 import com.mkdev.presentation.utils.CoroutineContextProviderImp
 import com.mkdev.presentation.utils.PresentationPreferencesHelper
@@ -30,4 +32,10 @@ object PresentationModule {
     fun provideCoroutineContextProvider(
         coroutineContextProviderImp: CoroutineContextProviderImp
     ): CoroutineContextProvider = coroutineContextProviderImp
+
+    @Singleton
+    @Provides
+    fun provideLocationProvider(
+        locationProviderImpl: LocationProviderImpl
+    ): LocationProvider = locationProviderImpl
 }

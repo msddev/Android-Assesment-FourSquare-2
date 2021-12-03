@@ -1,5 +1,4 @@
 import dependencies.UiDep
-import dependencies.RemoteDep
 
 plugins {
     id(Config.Plugins.android)
@@ -67,8 +66,8 @@ dependencies {
     UiDep.LifeCycle.forEach {
         implementation(it)
     }
-    // Paging
-    implementation(UiDep.paging)
+    // Location
+    implementation(UiDep.location)
     // Navigation
     implementation(UiDep.navigationFragmentKtx)
     implementation(UiDep.navigationUiKtx)    // Dagger-Hilt

@@ -1,8 +1,15 @@
 package com.mkdev.foursquarecodechallenge.ui.venuesList
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +19,7 @@ import com.mkdev.domain.model.VenueUIModel
 import com.mkdev.foursquarecodechallenge.base.BaseFragment
 import com.mkdev.foursquarecodechallenge.databinding.FragmentVenuesListBinding
 import com.mkdev.foursquarecodechallenge.extension.observe
+import com.mkdev.foursquarecodechallenge.ui.MainActivity.Companion.LOCATION_CHECKER_BROADCAST
 import com.mkdev.presentation.viewmodels.VenuesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,6 +30,8 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     private val limit = 20
     private var offset = 0
     private var isEndOfList: Boolean = false
+    private lateinit var locationBroadcast: BroadcastReceiver
+    private var currentLatLng: String = ""
 
     @Inject
     lateinit var venuesAdapter: VenueAdapter
@@ -34,15 +44,33 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getCurrentLocationLatLng()
+        observe(viewModel.currentLocation, ::onCurrentLocation)
+        observe(viewModel.isLocationChanged, ::onIsLocationChanged)
+        observe(viewModel.venuesList, ::onViewStateChange)
+
+        setupRecyclerView()
+        setupLocationBroadcast()
+    }
+
+    private fun onCurrentLocation(latLng: String) {
+        currentLatLng = latLng
+        Log.d("location", "Current Location : $currentLatLng")
+
         viewModel.getVenues(
             VenueParams(
-                latLng = "35.730673, 51.458880",
+                latLng = currentLatLng,
                 limit = limit,
                 offset = offset
             )
         )
-        observe(viewModel.venuesList, ::onViewStateChange)
-        setupRecyclerView()
+    }
+
+    private fun onIsLocationChanged(isChanged: Boolean) {
+        Log.d("location", "Location Changed: $isChanged")
+        if (isChanged) {
+            viewModel.getCurrentLocationLatLng()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -111,5 +139,40 @@ class VenuesListFragment : BaseFragment<FragmentVenuesListBinding, VenuesListVie
         if (items.size != limit) {
             isEndOfList = true
         }
+    }
+
+    private fun setupLocationBroadcast() {
+        locationBroadcast = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                checkLocationAndUpdateIfNeeded()
+            }
+        }
+
+        val intentFilter = IntentFilter(LOCATION_CHECKER_BROADCAST)
+        LocalBroadcastManager.getInstance(requireContext())
+            .registerReceiver(locationBroadcast, intentFilter)
+    }
+
+    private fun checkLocationAndUpdateIfNeeded() {
+        getConvertLocation(currentLatLng)?.let { location ->
+            viewModel.getCheckLocationChanged(location.latitude, location.longitude)
+        }
+    }
+
+    private fun getConvertLocation(location: String): Location? {
+        return try {
+            val latLng = location.split(",")
+            return Location("").apply {
+                latitude = latLng[0].toDouble()
+                longitude = latLng[1].toDouble()
+            }
+        } catch (ex: Exception) {
+            null
+        }
+    }
+
+    override fun onDestroyView() {
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(locationBroadcast)
+        super.onDestroyView()
     }
 }

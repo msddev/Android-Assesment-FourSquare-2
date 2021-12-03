@@ -5,6 +5,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.mkdev.foursquarecodechallenge.R
 import com.mkdev.foursquarecodechallenge.core.theme.ThemeUtils
 import com.mkdev.foursquarecodechallenge.core.theme.ThemeUtilsImpl
@@ -34,4 +36,10 @@ object AppModule {
                 .error(R.drawable.image_place_holder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
         )
+
+    @Singleton
+    @Provides
+    fun provideFusedLocationClient(
+        @ApplicationContext context: Context
+    ): FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
 }

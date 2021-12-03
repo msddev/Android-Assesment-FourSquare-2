@@ -29,6 +29,9 @@ object UiDep {
     // Paging
     const val paging = Dependencies.PagingDep.pagingCommon
 
+    // Location
+    const val location = Dependencies.LocationDep.location
+
     // Coroutines
     val Coroutines = listOf(
         Dependencies.CoroutinesDep.coroutineCore,
@@ -38,7 +41,6 @@ object UiDep {
     const val glide = Dependencies.GlideDep.glide
     const val glideKapt = Dependencies.GlideDep.glideKapt
     const val timber = Dependencies.TimberDep.timber
-    const val lottie = Dependencies.LottieDep.lottie
 
     object Test {
         const val junit = Dependencies.TestDep.junit

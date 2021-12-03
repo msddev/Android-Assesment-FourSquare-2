@@ -82,6 +82,10 @@ object Dependencies {
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
     }
 
+    object LocationDep {
+        const val location = "com.google.android.gms:play-services-location:${Versions.locationVersion}"
+    }
+
     object TestDep {
         const val coroutinesTest =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"

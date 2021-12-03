@@ -8,4 +8,9 @@
     <string name="location_is_not_valid">Location is not valid!</string>
     <string name="no_phone_number">There is no phone number</string>
     <string name="no_address">There is no address</string>
+    <string name="enable_location">Please enable your phone location</string>
+    <string name="ok_string">OK</string>
+    <string name="no_location">It is not found your location, Please try again!</string>
+    <string name="location_permission_hint">It is Needed to location permission to continue!</string>
+
 </resources>
