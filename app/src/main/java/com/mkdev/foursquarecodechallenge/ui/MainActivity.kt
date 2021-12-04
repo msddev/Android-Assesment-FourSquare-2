@@ -4,8 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -39,11 +37,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private var timerLocation: CountDownTimer? = null
+    private var hasLocationResult = false
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             super.onLocationResult(locationResult)
             addNavigationHostFragment()
+            hasLocationResult = true
         }
     }
 
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNavigationHostFragment() {
+        if (hasLocationResult) return
         val inflater = findNavController().navInflater
         val graph = inflater.inflate(R.navigation.main_navigation)
         findNavController().graph = graph
@@ -144,6 +145,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (hasLocationResult) return
         if (isLocationEnable()) {
             if (hasLocationPermission()) {
                 enableLocationAndLoadFragment()

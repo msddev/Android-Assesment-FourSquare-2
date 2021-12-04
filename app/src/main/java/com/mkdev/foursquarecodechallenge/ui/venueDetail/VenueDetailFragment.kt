@@ -36,11 +36,15 @@ class VenueDetailFragment :
     @Inject
     lateinit var glide: RequestManager
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         observe(viewModel.venuesDetail, ::onViewStateChange)
         viewModel.getVenueDetail(args.venueId)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.fabVenueLocation.setOnClickListener {
             openLocationInMap()
