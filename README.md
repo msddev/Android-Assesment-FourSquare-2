@@ -1,5 +1,5 @@
 # FourSquare
-The FourSquare consuming a [Foursquare Api](https://developer.foursquare.com/docs/places-api-getting-started) to display Places. it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
+The FourSquare consuming a [Foursquare Api](https://developer.foursquare.com/docs/places-api-getting-started) to display your near Places. it has been built with clean architecture principles, Repository Pattern, and MVVM pattern as well as Architecture Components.
 
 This app shows the usage of the new Navigation Architecture Component.
 
