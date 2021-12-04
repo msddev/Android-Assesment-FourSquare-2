@@ -1,6 +1,5 @@
 package com.mkdev.presentation.viewmodels
 
-import android.location.Location
 import androidx.lifecycle.LiveData
 import com.mkdev.domain.intractor.GetVenueDetailUseCase
 import com.mkdev.domain.model.VenueDetailUIModel
@@ -17,7 +16,6 @@ class VenueDetailViewModel @Inject constructor(
     private val getVenueDetailUseCase: GetVenueDetailUseCase
 ) : BaseViewModel(contextProvider) {
 
-    private var location = Location("location")
 
     override val coroutineExceptionHandler: CoroutineExceptionHandler =
         CoroutineExceptionHandler { _, exception ->
@@ -39,11 +37,7 @@ class VenueDetailViewModel @Inject constructor(
 
     private suspend fun loadVenueDetail(id: String) {
         getVenueDetailUseCase(id).collect {
-            location.latitude = it.latitude
-            location.longitude = it.longitude
             _venuesDetail.postValue(VenueDetailUIModel.Success(it))
         }
     }
-
-    fun getLocationLatLng(): Location = location
 }

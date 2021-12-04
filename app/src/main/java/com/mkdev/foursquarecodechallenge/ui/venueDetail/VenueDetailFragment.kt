@@ -1,6 +1,7 @@
 package com.mkdev.foursquarecodechallenge.ui.venueDetail
 
 import android.content.Intent
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -30,6 +31,8 @@ class VenueDetailFragment :
 
     private val args: VenueDetailFragmentArgs by navArgs()
 
+    private var location = Location("location")
+
     @Inject
     lateinit var glide: RequestManager
 
@@ -45,7 +48,6 @@ class VenueDetailFragment :
     }
 
     private fun openLocationInMap() {
-        val location = viewModel.getLocationLatLng()
         if (location.latitude == 0.0 || location.longitude == 0.0) {
             handleErrorMessage(getString(R.string.location_is_not_valid))
             return
@@ -64,7 +66,11 @@ class VenueDetailFragment :
             }
             is VenueDetailUIModel.Success -> {
                 handleLoadingViews(false)
+
                 result.data.let { venue ->
+                    location.latitude = venue.latitude
+                    location.longitude = venue.longitude
+
                     binding.apply {
                         textViewVenueName.text = venue.name
                         textViewVenueAddress.text = if (venue.address?.isEmpty() == true)
